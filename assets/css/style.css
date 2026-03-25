@@ -274,7 +274,7 @@ article.active {
 
 .content-card {
   position: relative;
-  background: var(--border-gradient-onyx);
+  /* background: var(--border-gradient-onyx); */
   padding: 15px;
   padding-top: 45px;
   border-radius: 14px;
@@ -867,6 +867,141 @@ main {
   border-radius: inherit;
 }
 
+.skill-bubble-section {
+  margin-top: 100px;
+  padding-top: 0;
+}
+
+.skill-bubble-section .skills-title {
+  margin-top: 0;
+}
+
+.resume .skill + .skill {
+  margin-top: 20px;
+}
+
+.resume .skill + .skill .skills-title {
+  margin-top: 0;
+}
+
+.skill-bubble-list {
+  position: relative;
+  min-height: 320px;
+  padding: 20px;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--border-gradient-onyx);
+}
+
+.skill-bubble-item {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--jet);
+  background: hsla(158, 23%, 26%, 0.9);
+  color: var(--white-2);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-500);
+  white-space: nowrap;
+  box-shadow: 0 6px 18px hsla(0, 0%, 0%, 0.22);
+  will-change: transform;
+}
+
+.skill-bubble-item ion-icon {
+  font-size: 16px;
+  color: var(--orange-yellow-crayola);
+}
+
+.skill-bubble-item img {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.skill-bubble-item .skill-logo-langgraph {
+  filter: brightness(0) saturate(100%) invert(66%) sepia(72%) saturate(724%) hue-rotate(82deg) brightness(96%) contrast(94%);
+}
+
+.skill-bubble-item .skill-logo-groq {
+  filter: brightness(0) saturate(100%) invert(63%) sepia(29%) saturate(1821%) hue-rotate(255deg) brightness(97%) contrast(103%);
+}
+
+.skill-bubble-item:hover {
+  box-shadow: 0 10px 22px hsla(45, 100%, 72%, 0.3);
+}
+
+.bubble-flare {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  color: hsl(var(--flare-hue, 42) 100% 72%);
+  background: currentColor;
+  transform: translate(-50%, -50%) scale(0.2);
+  animation: crackerPop 520ms ease-out forwards;
+}
+
+@keyframes crackerPop {
+  0% {
+    opacity: 0.95;
+    transform: translate(-50%, -50%) scale(0.2);
+    box-shadow:
+      0 0 0 0 currentColor,
+      0 0 0 0 currentColor,
+      0 0 0 0 currentColor,
+      0 0 0 0 currentColor,
+      0 0 0 0 currentColor,
+      0 0 0 0 currentColor,
+      0 0 0 0 currentColor,
+      0 0 0 0 currentColor;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.7);
+    box-shadow:
+      0 -20px 0 -6px currentColor,
+      14px -14px 0 -6px currentColor,
+      20px 0 0 -6px currentColor,
+      14px 14px 0 -6px currentColor,
+      0 20px 0 -6px currentColor,
+      -14px 14px 0 -6px currentColor,
+      -20px 0 0 -6px currentColor,
+      -14px -14px 0 -6px currentColor;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-bubble-item,
+  .bubble-flare {
+    animation: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .resume .skills-list.content-card,
+  .resume .skill-bubble-list.content-card {
+    box-shadow: none;
+  }
+
+  .resume .skill-bubble-item {
+    border-color: transparent;
+    box-shadow: none;
+    transition: none;
+  }
+
+  .resume .skill-bubble-item:hover {
+    box-shadow: none;
+  }
+}
+
 
 
 
@@ -956,7 +1091,8 @@ main {
 .project-img {
   position: relative;
   width: 100%;
-  height: 200px;
+  height: auto;
+  aspect-ratio: 4 / 3;
   border-radius: 16px;
   overflow: hidden;
   margin-bottom: 15px;
